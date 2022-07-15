@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Minesweeper : MonoBehaviour
+using UnityEngine.SceneManagement;
+public class Minesweeper : MonoBehaviour 
 {
     [SerializeField]
     private int _rows = 1;
@@ -18,6 +18,7 @@ public class Minesweeper : MonoBehaviour
     [SerializeField]
     private Cell _cellPrefab = null;
 
+    public static bool danger = false;
     private void Start()
     {
         _gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
@@ -49,7 +50,14 @@ public class Minesweeper : MonoBehaviour
             }
         }
     }
-
+    private void FixedUpdate()
+    {
+        if(danger)
+        {
+            danger = false;
+            SceneManager.LoadScene("SampleScene");
+        }
+    }
     /// <summary>
     /// 指定した2次元配列のセルをすべて初期化して、指定数の地雷をランダムに配置する。
     /// 地雷数がセル数より多い場合、すべてのセルを地雷で埋める。
@@ -125,4 +133,5 @@ public class Minesweeper : MonoBehaviour
 
         return (CellState)count; // 地雷数を CellState に変換
     }
+    
 }

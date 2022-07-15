@@ -8,7 +8,7 @@ public class Cell : MonoBehaviour
     [SerializeField]
     private CellState _cellState = CellState.None;
     [SerializeField]
-    private GameObject _cellCover = default;
+    static int first = 0;
     bool digg = false;
     public CellState CellState
     {
@@ -30,9 +30,18 @@ public class Cell : MonoBehaviour
         {
             if (_cellState== CellState.Mine)
             {
+                if(first==1)
+                {
+                    first = 0;
+                    Minesweeper.danger = true;
+                }
                 digg = false;
                 Debug.Log("Bomb!");
                 Destroy(this);
+            }
+            else
+            {
+                digg = false;
             }
         }
     }
@@ -59,5 +68,7 @@ public class Cell : MonoBehaviour
     public void Digout()
     {
         digg = true;
+        first++;
+        Debug.Log(first);
     }
 }
