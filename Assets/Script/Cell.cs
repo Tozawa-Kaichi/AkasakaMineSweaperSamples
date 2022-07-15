@@ -71,4 +71,8 @@ public class Cell : MonoBehaviour
         first++;
         Debug.Log(first);
     }
+    public void AutoOpen()
+    {
+
+    }
 }
