@@ -130,7 +130,6 @@ public class Minesweeper : MonoBehaviour
             if (cells[r + 1, c].CellState == CellState.Mine) { count++; }
             if (c + 1 < _columns && cells[r + 1, c + 1].CellState == CellState.Mine) { count++; }
         }
-
         return (CellState)count; // ’n—‹”‚ð CellState ‚É•ÏŠ·
     }
     
